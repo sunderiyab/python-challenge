@@ -1,4 +1,6 @@
 
+
+    
 #import the file
 import os
 import csv
@@ -83,3 +85,12 @@ with open (csvpath, 'r') as csvfile:
     average_change = total_changes / (current_loss + 1)
     print(f'average_change:{average_change}')
 #something is off with my code here it works but not matching with the answer. i think my math is wrong. 
+
+with open("analysis_results.txt", "w") as file:
+    file.write(f"Total Months: {total_months}\n")
+    file.write(f"Total: ${net_total}\n")
+    file.write(f"Average Change: ${average_change:.2f}\n")
+    file.write(f"Greatest Increase in Profits: {max_increase_date} (${max_increase})\n")
+    file.write(f"Greatest Decrease in Profits: {min_decrease_date} (${min_decrease})\n")
+
+
