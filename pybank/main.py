@@ -1,3 +1,5 @@
+
+#import the file
 import os
 import csv
 
@@ -14,7 +16,7 @@ with open (csvpath, 'r') as csvfile:
     for row in csvreader:
         months.add(row[0])
 
-    total_months = len(months)
+    total_months = len(months) 
     print(f'total months: {total_months}')
 
 #The net total amount of "Profit/Losses" over the entire period
@@ -64,18 +66,20 @@ with open (csvpath, 'r') as csvfile:
         previous_profit_losses = profit_loss
     print(f"greatest decrease in profits: {min_decrease_date} - (${min_decrease})")
 
+
+    csvfile.seek(0) #pointing to the back to beginning
+    next(csvreader) #excludes header
     profit_loss = 0
     total_changes = 0
-    changes = 0
+    previous_changes = 0
     current_loss = 0
+    #loop
     for row in csvreader:
         current_loss = int(row[1])
         if profit_loss != 0:
            difference = current_loss - profit_loss
            total_changes += difference
-           changes += 1
-    profit_loss = current_loss
-    average_change = total_changes / (changes +1)
-    print(f'total_change: {total_changes}')
+        profit_loss = current_loss
+    average_change = total_changes / (current_loss + 1)
     print(f'average_change:{average_change}')
-#something is off with my code it giving me 0
+#something is off with my code here it works but not matching with the answer. i think my math is wrong. 
